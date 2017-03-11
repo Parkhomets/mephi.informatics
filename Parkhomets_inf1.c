@@ -44,6 +44,7 @@ void create_complex_Matrix(struct Matrix* Matrix1){
 
 void print_int_Matrix(struct Matrix* Matrix1){
 int i, j;
+    printf("\n");
     for (i=0; i < Matrix1->n; i++){
         for(j = 0; j < Matrix1->m; j ++)
             printf("%d ", *((int*)Matrix1->a+Matrix1->m*i+j));
@@ -52,6 +53,7 @@ int i, j;
 }
 void print_float_Matrix(struct Matrix* Matrix1){
 int i, j;
+    printf("\n");
     for (i=0; i < Matrix1->n; i++){
         for(j = 0; j < Matrix1->m; j ++)
             printf("%f ", *((float*)Matrix1->a+Matrix1->m*i+j));
@@ -60,6 +62,7 @@ int i, j;
 }
 void print_complex_Matrix(struct Matrix* Matrix1){
 int i, j;
+    printf("\n");
     for (i=0; i < Matrix1->n; i++){
         for(j = 0; j < Matrix1->m; j ++)
             printf("(%f + i%f) ", ((struct Complex*)Matrix1->a+Matrix1->m*i+j)->x,((struct Complex*)Matrix1->a+Matrix1->m*i+j)->y);
@@ -138,7 +141,7 @@ void mult_int_matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
             for (j = 0; j < M3->m; j++)
                 *((int*)M3->a + M3->m*i + j) = 0;
         int p;
-        for (p = 0; p < M2->m; p++)
+        for (p = 0; p < M3->n; p++)
             for (i = 0; i < M2->m; i++)
                 for (j = 0; j < M1->m; j++)
                     *((int*)M3->a + M2->m*p +i) += *((int*)M1->a + M1->m * p + j) * *((int*)M2->a+j * M2->m + i);
@@ -158,7 +161,7 @@ void mult_float_matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
             for (j = 0; j < M3->m; j++)
                 *((float*)M3->a + M3->m*i + j) = 0;
         int p;
-        for (p = 0; p < M2->m; p++)
+        for (p = 0; p < M3->n; p++)
             for (i = 0; i < M2->m; i++)
                 for (j = 0; j < M1->m; j++)
                     *((float*)M3->a + M2->m*p +i) += *((float*)M1->a + M1->m * p + j) * *((float*)M2->a+j * M2->m + i);
@@ -505,6 +508,12 @@ void test_float_matrix(){
     }else{
         printf("\nTest failed.\n\n");
     }
+    free(M4.a);
+    free(M3.a);
+    free(M1.a);
+    free(M2.a);
+    free(M3.a);
+
 }
 void test_complex_matrix(){
     struct Matrix M1, M2, M3, M4, M5;
@@ -574,6 +583,7 @@ void test_complex_matrix(){
     }else{
         printf("Test failed.\n");
         }
+    free(M3.a);
 
     printf("validation of multiplication...\n");
     mult_complex_matrix(&M1,&M2,&M4);
@@ -595,9 +605,9 @@ void test_complex_matrix(){
     }else{
         printf("Test failed.\n");
         }
-
-
-
+    free(M1.a);
+    free(M2.a);
+    free(M4.a);
 }
 
 int main()
@@ -613,7 +623,7 @@ int main()
         switch(var){
         case 1:
             printf("\nAddition or multiplication?\nAddition - 1\nMultiplication - 2\n");
-            var = scanf("%d", &var);
+            scanf("%d", &var);
             create_int_Matrix(&M1);
             print_int_Matrix(&M1);
             create_int_Matrix(&M2);
@@ -627,7 +637,7 @@ int main()
             }break;
         case 2:
             printf("\nAddition or multiplication?\nAddition - 1\nMultiplication - 2\n");
-            var = scanf("%d", &var);
+            scanf("%d", &var);
             create_float_Matrix(&M1);
             print_float_Matrix(&M1);
             create_float_Matrix(&M2);
@@ -641,7 +651,7 @@ int main()
             }break;
             case 3:
                 printf("\nAddition or multiplication?\nAddition - 1\nMultiplication - 2\n");
-                var = scanf("%d", &var);
+                scanf("%d", &var);
                 create_complex_Matrix(&M1);
                 print_complex_Matrix(&M1);
                 create_complex_Matrix(&M2);
@@ -671,7 +681,6 @@ int main()
         }
     return 0;
 }
-
 
 
 

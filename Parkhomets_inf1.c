@@ -85,7 +85,7 @@ void add_int_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
                 *((int*)M3->a + M2->m*i + j) = *((int*)M1->a + M2->m*i + j) + *((int*)M2->a + M2->m*i + j);
         printf("\n\n");
     }else{
-        printf("Unsupported size for addiction\n");
+        printf("Unsupported size for addiction\n\a");
     }
 }
 void add_float_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
@@ -103,7 +103,7 @@ void add_float_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
                 *((float*)M3->a + M2->m*i + j) = *((float*)M1->a + M2->m*i + j) + *((float*)M2->a + M2->m*i + j);
         printf("\n\n");
     }else{
-        printf("Unsupported size for addiction\n");
+        printf("Unsupported size for addiction\n\a");
     }
 }
 void add_complex_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
@@ -123,7 +123,7 @@ void add_complex_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3)
             }
         printf("\n\n");
     }else{
-        printf("Unsupported size for addiction\n");
+        printf("Unsupported size for addiction\n\a");
     }
 }
 
@@ -147,7 +147,7 @@ void mult_int_matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
                 for (j = 0; j < M1->m; j++)
                     *((int*)M3->a + M2->m*p +i) += *((int*)M1->a + M1->m * p + j) * *((int*)M2->a+j * M2->m + i);
     }else
-        printf("Unsupported size for multiplication\n");
+        printf("Unsupported size for multiplication\n\a");
 }
 void mult_float_matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
     int i,j;
@@ -167,7 +167,7 @@ void mult_float_matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
                 for (j = 0; j < M1->m; j++)
                     *((float*)M3->a + M2->m*p +i) += *((float*)M1->a + M1->m * p + j) * *((float*)M2->a+j * M2->m + i);
     }else
-        printf("Unsupported size for multiplication\n");
+        printf("Unsupported size for multiplication\n\a");
 }
 void mult_complex_matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
     int i,j,p;
@@ -196,7 +196,7 @@ void mult_complex_matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3
                     ((struct Complex*)M3->a + M3->m*i + j)->y += q * r + e * w;
                 }
     }else
-        printf("Unsupported size for multiplication");
+        printf("Unsupported size for multiplication\n\a");
 }
 
 void test_int_matrix(){
@@ -222,10 +222,10 @@ void test_int_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M2.a);
     printf("To verify, create the second matrix of size 3*4.\n");
@@ -246,10 +246,10 @@ void test_int_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M4.a);
     printf("validation of addition...");
@@ -269,10 +269,10 @@ void test_int_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M5.a);
     free(M6.a);
@@ -299,10 +299,10 @@ void test_int_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M2.a);
     printf("To verify, create the second matrix of size 3*2.\n");
@@ -323,10 +323,10 @@ void test_int_matrix(){
         if (p == 6){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M3.a);
     printf("Checking the correctness of the multiplication...\n");
@@ -346,10 +346,10 @@ void test_int_matrix(){
         if (p == 8){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M1.a);
     free(M2.a);
@@ -379,10 +379,10 @@ void test_float_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
 
     free(M2.a);
@@ -405,10 +405,10 @@ void test_float_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M2.a);
 
@@ -430,10 +430,10 @@ void test_float_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
 
 
@@ -456,10 +456,10 @@ void test_float_matrix(){
         if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M2.a);
 
@@ -481,10 +481,10 @@ void test_float_matrix(){
         if (p == 6){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     eps = 0.00001;
     printf("Checking the correctness of the multiplication...\n");
@@ -504,10 +504,10 @@ void test_float_matrix(){
         if (p == 8){
             printf("\nTest passed.\n\n");
         }else{
-            printf("\nTest failed.\n\n");
+            printf("\nTest failed.\n\n\a");
         }
     }else{
-        printf("\nTest failed.\n\n");
+        printf("\nTest failed.\n\n\a");
     }
     free(M4.a);
     free(M3.a);
@@ -534,10 +534,10 @@ void test_complex_matrix(){
         if (p==8){
             printf("Test passed.\n");
         }else{
-            printf("Test failed.\n");
+            printf("Test failed.\n\a");
             }
     }else{
-        printf("Test failed.\n");
+        printf("Test failed.\n\a");
         }
 
     printf("To verify, create the second matrix of size 2*2.\n");
@@ -556,10 +556,10 @@ void test_complex_matrix(){
         if (p==8){
             printf("Test passed.\n");
         }else{
-            printf("Test failed.\n");
+            printf("Test failed.\n\a");
             }
     }else{
-        printf("Test failed.\n");
+        printf("Test failed.\n\a");
         }
 
     printf("validation of addition...\n");
@@ -578,10 +578,10 @@ void test_complex_matrix(){
         if (p==8){
             printf("Test passed.\n");
         }else{
-            printf("Test failed.\n");
+            printf("Test failed.\n\a");
             }
     }else{
-        printf("Test failed.\n");
+        printf("Test failed.\n\a");
         }
     free(M3.a);
 
@@ -600,10 +600,10 @@ void test_complex_matrix(){
         if (p==8){
             printf("Test passed.\n");
         }else{
-            printf("Test failed.\n");
+            printf("Test failed.\n\a");
             }
     }else{
-        printf("Test failed.\n");
+        printf("Test failed.\n\a");
         }
     free(M1.a);
     free(M2.a);

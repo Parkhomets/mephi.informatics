@@ -72,7 +72,8 @@ int i, j;
 
 void add_int_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
     int i,j;
-
+    M3->n = 0;
+    M3->m = 0;
     if (M2->n == M1->n && M1->m == M2->m){
         M3->n = M2->n;
         M3->m = M2->m;
@@ -85,12 +86,12 @@ void add_int_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
         printf("\n\n");
     }else{
         printf("Unsupported size for addiction\n");
-        exit(1);
     }
 }
 void add_float_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
     int i,j;
-
+    M3->n = 0;
+    M3->m = 0;
     if (M2->n == M1->n && M1->m == M2->m){
         M3->n = M2->n;
         M3->m = M2->m;
@@ -103,11 +104,12 @@ void add_float_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
         printf("\n\n");
     }else{
         printf("Unsupported size for addiction\n");
-        exit(1);
     }
 }
 void add_complex_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3){
     int i,j;
+    M3->n = 0;
+    M3->m = 0;
     if (M2->n == M1->n && M1->m == M2->m){
         M3->n = M2->n;
         M3->m = M2->m;
@@ -122,7 +124,6 @@ void add_complex_Matrix(struct Matrix* M1, struct Matrix* M2, struct Matrix* M3)
         printf("\n\n");
     }else{
         printf("Unsupported size for addiction\n");
-        exit(1);
     }
 }
 
@@ -280,14 +281,14 @@ void test_int_matrix(){
     free(M3.a);
 
     printf("To check multiplication you need to create two other matrices...\n");
-    printf("To verify, create the first matrix of size 2*3.\n");
-    printf("To validate, fill in the matrix elements 2,3,5,1,6,4.\n\n");
+    printf("To verify, create the first matrix of size 4*3\n");
+    printf("To validate, fill in the matrix elements 2,3,6,5,4,2,5,3,2,4,6,5.\n\n");
     create_int_Matrix(&M1);
     print_int_Matrix(&M1);
-    M2.a = (int*)malloc(sizeof(int)*6);
-    M2.n = 2;
+    M2.a = (int*)malloc(sizeof(int)*12);
+    M2.n = 4;
     M2.m = 3;
-    int Mll[6] = {2,3,5,1,6,4};
+    int Mll[12] = {2,3,6,5,4,2,5,3,2,4,6,5};
     M2.a = &Mll;
     p =0;
     if(M1.n == M2.n && M1.m == M2.m){
@@ -295,7 +296,7 @@ void test_int_matrix(){
             for (j = 0; j < M1.m; j++)
                 if (*((int*)M1.a + M1.m*i + j)==*((int*)M2.a + M1.m*i + j))
                     p++;
-        if (p == 6){
+        if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
             printf("\nTest failed.\n\n");
@@ -305,13 +306,13 @@ void test_int_matrix(){
     }
     free(M2.a);
     printf("To verify, create the second matrix of size 3*2.\n");
-    printf("To validate, fill in the matrix elements 8,3,4,7,1,5.\n\n");
+    printf("To validate, fill in the matrix elements 8,6,5,4,7,9.\n\n");
     create_int_Matrix(&M2);
     print_int_Matrix(&M2);
     M3.a = (int*)malloc(sizeof(int)*6);
     M3.n = 3;
     M3.m = 2;
-    int Ml3[6] = {8,3,4,7,1,5};
+    int Ml3[6] = {8,6,5,4,7,9};
     M3.a = &Ml3;
     p =0;
     if(M2.n == M3.n && M2.m == M3.m){
@@ -331,10 +332,10 @@ void test_int_matrix(){
     printf("Checking the correctness of the multiplication...\n");
     mult_int_matrix(&M1,&M2,&M3);
     print_int_Matrix(&M3);
-    M4.a = (int*)malloc(sizeof(int)*4);
-    M4.n = 2;
+    M4.a = (int*)malloc(sizeof(int)*8);
+    M4.n = 4;
     M4.m = 2;
-    int Ml4[4] = {33,52,36,65};
+    int Ml4[8] = {73,78,74,64,69,60,97,93};
     M4.a = &Ml4;
     p =0;
     if(M4.n == M3.n && M4.m == M3.m){
@@ -342,7 +343,7 @@ void test_int_matrix(){
             for (j = 0; j < M4.m; j++)
                 if (*((int*)M4.a + M4.m*i + j)==*((int*)M3.a + M3.m*i + j))
                     p++;
-        if (p == 4){
+        if (p == 8){
             printf("\nTest passed.\n\n");
         }else{
             printf("\nTest failed.\n\n");
@@ -437,14 +438,14 @@ void test_float_matrix(){
 
 
     printf("To check multiplication you need to create two other matrices...\n");
-    printf("To verify, create the first matrix of size 2*3.\n");
-    printf("To validate, fill in the matrix elements 2.2, 3.1, 2.4, 1.5, 4.0, 1.1...\n\n");
+    printf("To verify, create the first matrix of size 4*3.\n");
+    printf("To validate, fill in the matrix elements 8, 9, 5, 3, 4, 1, 2, 1.1, 6.6, 8.1, 3.3, 1...\n\n");
     create_float_Matrix(&M1);
     print_float_Matrix(&M1);
-    M2.a = (float*)malloc(sizeof(float)*6);
-    M2.n = 2;
+    M2.a = (float*)malloc(sizeof(float)*12);
+    M2.n = 4;
     M2.m = 3;
-    float Mass3[6] = {2.2, 3.1, 2.4, 1.5, 4.0, 1.1};
+    float Mass3[12] = {8, 9, 5, 3, 4, 1, 2, 1.1, 6.6, 8.1, 3.3, 1};
     M2.a = &Mass3;
     p =0;
     if(M1.n == M2.n && M1.m == M2.m){
@@ -452,7 +453,7 @@ void test_float_matrix(){
             for (j = 0; j < M1.m; j++)
                 if (*((float*)M1.a + M1.m*i + j)==*((float*)M2.a + M1.m*i + j))
                     p++;
-        if (p == 6){
+        if (p == 12){
             printf("\nTest passed.\n\n");
         }else{
             printf("\nTest failed.\n\n");
@@ -463,13 +464,13 @@ void test_float_matrix(){
     free(M2.a);
 
     printf("To verify, create the second matrix of size 3*2.\n");
-    printf("To validate, fill in the matrix elements 5.1, 3.2, 4.5, 1.0, 1.4, 3.2.\n\n");
+    printf("To validate, fill in the matrix elements 6, 2.2, 4.1, 5, 1.1, 3...\n\n");
     create_float_Matrix(&M2);
     print_float_Matrix(&M2);
     M3.a = (float*)malloc(sizeof(float)*6);
     M3.n = 3;
     M3.m = 2;
-    float Mass4[6] = {5.1, 3.2, 4.5, 1.0, 1.4, 3.2};
+    float Mass4[6] = {6, 2.2, 4.1, 5, 1.1, 3};
     M3.a = &Mass4;
     p =0;
     if(M2.n == M3.n && M2.m == M3.m){
@@ -489,10 +490,10 @@ void test_float_matrix(){
     printf("Checking the correctness of the multiplication...\n");
     mult_float_matrix(&M1,&M2,&M5);
     print_float_Matrix(&M5);
-    M4.a = (float*)malloc(sizeof(float)*4);
-    M4.n = 2;
+    M4.a = (float*)malloc(sizeof(float)*8);
+    M4.n = 4;
     M4.m = 2;
-    float Mass5[4] = {28.530001, 17.820002, 27.190001, 12.320001};
+    float Mass5[8] = {90.400002, 77.599998, 35.500000, 29.600000,23.770000,29.700001,63.230000,37.320000};
     M4.a = &Mass5;
     p =0;
     if(M4.n == M5.n && M4.m == M5.m){
@@ -500,7 +501,7 @@ void test_float_matrix(){
             for (j = 0; j < M4.m; j++)
                 if (abs(*((int*)M4.a + M4.m*i + j)-*((int*)M5.a + M5.m*i + j))<eps)
                     p++;
-        if (p == 4){
+        if (p == 8){
             printf("\nTest passed.\n\n");
         }else{
             printf("\nTest failed.\n\n");
@@ -512,7 +513,6 @@ void test_float_matrix(){
     free(M3.a);
     free(M1.a);
     free(M2.a);
-    free(M3.a);
 
 }
 void test_complex_matrix(){
@@ -630,9 +630,13 @@ int main()
             print_int_Matrix(&M2);
             if (var == 1){
                 add_int_Matrix(&M1,&M2,&M3);
+                if(M3.n == 0 || M3.m==0)
+                    exit(0);
                 print_int_Matrix(&M3);
             }else{
                 mult_int_matrix(&M1,&M2,&M3);
+                    if(M3.n == 0 || M3.m==0)
+                    exit(0);
                 print_int_Matrix(&M3);
             }break;
         case 2:
@@ -644,9 +648,13 @@ int main()
             print_float_Matrix(&M2);
             if (var == 1){
                 add_float_Matrix(&M1,&M2,&M3);
+                if(M3.n == 0 || M3.m==0)
+                    exit(0);
                 print_float_Matrix(&M3);
             }else{
                 mult_float_matrix(&M1,&M2,&M3);
+                if(M3.n == 0 || M3.m==0)
+                    exit(0);
                 print_float_Matrix(&M3);
             }break;
             case 3:
@@ -658,9 +666,13 @@ int main()
                 print_complex_Matrix(&M2);
                 if (var == 1){
                     add_complex_Matrix(&M1,&M2,&M3);
+                    if(M3.n == 0 || M3.m==0)
+                    exit(0);
                     print_complex_Matrix(&M3);
                 }else{
                     mult_complex_matrix(&M1,&M2,&M3);
+                    if(M3.n == 0 || M3.m==0)
+                    exit(0);
                     print_complex_Matrix(&M3);
                 }break;
                 }
